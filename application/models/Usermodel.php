@@ -24,17 +24,17 @@
       return $records;
     }
 
-    public function updateUser($id){
-      $query = $this->db->where('id',$id)->get('info');
-      if ($query->num_rows()) {
-        return $query->result();
-      }
-    }
+    // public function updateUser($id){
+    //   $query = $this->db->where('id',$id)->get('info');
+    //   if ($query->num_rows()) {
+    //     return $query->result();
+    //   }
+    // }
 
     public function update($id, $data){
       $this->db->trans_start();
 
-      $query = $this->db->where('id',$id)->update('info');
+      $query = $this->db->where('id',$id)->update('info', $data);
 
       $this->db->trans_complete();
 

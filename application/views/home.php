@@ -15,6 +15,7 @@
               <table id="infoTable" class="table text-center table-info table-bordered table-hover">
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Contact</th>
@@ -36,7 +37,7 @@
 
 
 
-      <!-- Modal -->
+      <!-- Insert Modal -->
       <div class="modal fade" id="insertModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -68,7 +69,7 @@
       <!-- end of modal -->
 
 
-      <!-- Modal -->
+      <!-- Update Modal -->
       <div class="modal fade" id="updateModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

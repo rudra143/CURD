@@ -22,54 +22,85 @@ $(document).ready(function() {
       }); // end of ajax call
     }); // end of submit event
 
-  $(document).on('click','button.update', function(e){
-    e.preventDefault();
-    var id = $(this).data('id');
-    $.ajax({
-      url: 'http://localhost/CURD/home/updateUser',
-      type: 'POST',
-      dataType: 'json',
-      data: {id: id}
-    })
-    .done(function(data) {
-      if (data.status == 'success') {
-        // console.log(data.result[0].name);
-        $('input[type="hidden"][name="id"]').val(data.result[0].id);
-        $('input[type="text"][name="name"]').val(data.result[0].name);
-        $('input[type="email"][name="email"]').val(data.result[0].email);
-        $('input[type="text"][name="contact"]').val(data.result[0].contact);
-        if (!$('#updateModal').hide()) {
-          $('#updateForm')[0].reset();
-        }
-      }
-    })
-    .always(function() {
-      console.log("complete");
-    });
+  // $(document).on('click','button.update', function(e){
+  //   e.preventDefault();
+  //   var id = $(this).data('id');
+  //   $.ajax({
+  //     url: 'http://localhost/CURD/home/updateUser',
+  //     type: 'POST',
+  //     dataType: 'json',
+  //     data: {id: id}
+  //   })
+  //   .done(function(data) {
+  //     if (data.status == 'success') {
+  //       // console.log(data.result[0].name);
+  //       $('input[type="hidden"][name="id"]').val(data.result[0].id);
+  //       $('input[type="text"][name="name"]').val(data.result[0].name);
+  //       $('input[type="email"][name="email"]').val(data.result[0].email);
+  //       $('input[type="text"][name="contact"]').val(data.result[0].contact);
+  //       if (!$('#updateModal').hide()) {
+  //         $('#updateForm')[0].reset();
+  //       }
+  //     }
+  //   })
+  //   .always(function() {
+  //     console.log("complete");
+  //   });
 
-  });
+  // });
 
 
-  $('#infoTable').DataTable({
+  var table = $('#infoTable').DataTable({
 
     "ajax": 'http://localhost/CURD/home/fetchUsers',
     "columns" : [
+      { "data": "id"},
       { "data": "name" },
       { "data": "email" },
       { "data": "contact" }
     ],
     "columnDefs": [
       {
-        "targets": 3,
-        "data": null,
-        "defaultContent": "<button>Update</button>"
-      },
-      {
         "targets": 4,
         "data": null,
-        "defaultContent": "<button>Delete</button>"
+        "defaultContent": "<button class='btn btn-success update' data-toggle='modal' data-target='#updateModal'><span class='fa fa-edit'></span></button>"
+      },
+      {
+        "targets": 5,
+        "data": null,
+        "defaultContent": "<button class='btn btn-danger'><span class='fa fa-trash'></span></button>"
       }
     ]
+  });
+
+  $('#infoTable tbody').on('click', 'button.update', function (e) {
+    e.preventDefault();
+    var data = table.row($(this).parents('tr')).data();
+    $('input[type="hidden"][name="id"]').val(data.id);
+    $('input[type="text"][name="name"]').val(data.name);
+    $('input[type="email"][name="email"]').val(data.email);
+    $('input[type="text"][name="contact"]').val(data.contact);
+  });
+
+  $('#updateForm').on('submit', function(e){
+    e.preventDefault();
+
+    $.ajax({
+      url: 'http://localhost/CURD/home/updateUserData',
+      type: 'POST',
+      dataType: 'json',
+      data: $('#updateForm').serialize()
+    })
+      .done(function (data) {
+        if (data.status == 'success') {
+          alert("Record Updated Successfully");
+          $('#updateModal').modal('toggle');
+          table.ajax.reload(); 
+        }
+      })
+      .always(function () {
+        console.log("complete");
+      });    
   });
 
 
