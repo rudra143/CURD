@@ -12,13 +12,14 @@
           <div class="row mt-5">
           <div class="col">
             <!-- user Info table -->
-              <table id="infoTable" class="table table-dark table-bordered table-hover">
+              <table id="infoTable" class="table text-center table-info table-bordered table-hover">
                 <thead>
                   <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Contact</th>
-                    <th>Action</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -4,33 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
   public function index(){
-    $this->load->view('home');
+    $this->load->view('home', ['title'=>'Home']);
 
   }
 
   public function insert()
   {
 
-    $this->form_validation->set_rules(
-      [
-        array(
-          'field' => 'name',
-          'label' => 'Name',
-          'rules' => 'required|trim'
-        ),
-        array(
-          'field' => 'email',
-          'label' => 'Email',
-          'rules' => 'required|trim|Valid_email'
-        ),
-        array(
-          'field' => 'contact',
-          'label' => 'Contact',
-          'rules' => 'required|trim|max_length[10]|min_length[10]'
-        )
-      ]
-    );
-    if ($this->form_validation->run()) {
+    
+    if ($this->form_validation->run('userForm')) {
       $data = $this->input->post(null, true);
       unset($data['insert']);
       $this->load->model('usermodel');
@@ -48,10 +30,10 @@ class Home extends CI_Controller {
 
   public function fetchUsers(){
     $this->load->model('usermodel');
-    $result = $this->usermodel->fetchUsers();
-    if ($result) {
-      // code...
-      $output = array('status'=>'success','result'=>$result);
+	$results = $this->usermodel->fetchUsers();
+	if ($results) {
+	  // code...
+      $output = array('data'=> $results);
       echo json_encode($output);
       return null;
     } else {

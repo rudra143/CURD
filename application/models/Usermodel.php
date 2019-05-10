@@ -16,7 +16,12 @@
 
     public function fetchUsers(){
       $query = $this->db->get('info');
-      return $query->result_array();
+      $results = $query->result_array();
+      $records = [];
+      foreach($results as $result){
+        $records[] = $result;
+      }
+      return $records;
     }
 
     public function updateUser($id){
