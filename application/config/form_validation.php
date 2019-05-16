@@ -2,9 +2,13 @@
 
 
 
+        
+
+
+
   $config = [
   
-      'userform' => [
+      'signup' => [
   
                 [
                   'field' => 'name',
