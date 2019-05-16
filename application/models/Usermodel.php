@@ -41,7 +41,7 @@
       return $this->db->trans_status();
     }
 
-    public function deleteUser(){
+    public function deleteUser($id){
 
       $this->db->trans_start();
 

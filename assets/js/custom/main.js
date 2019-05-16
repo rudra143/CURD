@@ -68,7 +68,7 @@ $(document).ready(function() {
       {
         "targets": 5,
         "data": null,
-        "defaultContent": "<button class='btn btn-danger'><span class='fa fa-trash'></span></button>"
+        "defaultContent": "<button class='btn btn-danger delete'><span class='fa fa-trash'></span></button>"
       }
     ]
   });
@@ -101,6 +101,30 @@ $(document).ready(function() {
       .always(function () {
         console.log("complete");
       });    
+  });
+
+
+  $('#infoTable tbody').on('click', 'button.delete', function (e) {
+    e.preventDefault();
+    var data = table.row($(this).parents('tr')).data();
+
+    if(confirm("Are you sure you want to delete this record??")){
+		$.ajax({
+			url: "http://localhost/CURD/home/delete",
+			type: 'POST',
+			dataType: 'JSON',
+			data: { id: data.id }
+		})
+		.done(function (data) {
+			if (data.status == 'success') {
+				alert("Record Deleted Successfully");
+				table.ajax.reload(); 
+			}
+		})
+		.always(function () {
+
+		});
+	}
   });
 
 

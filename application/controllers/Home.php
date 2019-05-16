@@ -78,7 +78,18 @@ class Home extends CI_Controller {
 
   public function delete()
   {
-
+      $id = $_POST['id'];
+      $this->load->model('usermodel');
+      $result = $this->usermodel->deleteUser($id);
+      if ($result) {
+        $output = array('status'=>'success','result'=>$result);
+        echo json_encode($output);
+        return null;
+      } else {
+        $output = array('status'=>'fail');
+        echo json_encode($output);
+        return null;
+      }
   }
 
 
