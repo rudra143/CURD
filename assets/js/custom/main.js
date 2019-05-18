@@ -15,6 +15,7 @@ $(document).ready(function() {
           $('#insertForm')[0].reset();
           var err = `<span class="text text-danger">${data.error}</span>`;
           $('input[type="text"][name="contact"]').append(err);
+          table.ajax.reload(); 
         }
       })
       .always(function(){
