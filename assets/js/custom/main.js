@@ -91,14 +91,14 @@ $('#updateForm').on('submit', function(e){
 		dataType: 'json',
 		data: $('#updateForm').serialize()
 	})
-	.done(function (data) {
+	.done(function(data) {
 		if (data.status == 'success') {
 			alert("Record Updated Successfully");
 			$('#updateModal').modal('toggle');
 			table.ajax.reload(); 
 		}
 	})
-	.always(function () {
+	.always(function() {
 		console.log("complete");
 	});    
 });
