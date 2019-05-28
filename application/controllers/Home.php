@@ -9,7 +9,6 @@ class Home extends CI_Controller {
 
 	public function insert()
 	{
-
 		if ($this->form_validation->run('signup')) {
 			$data = $this->input->post(null, true);
 			unset($data['insert']);
