@@ -55,19 +55,18 @@ $(document).ready(function() {
 
     "ajax": 'http://localhost/CURD/home/fetchUsers',
     "columns" : [
-      { "data": "id"},
       { "data": "name" },
       { "data": "email" },
       { "data": "contact" }
     ],
     "columnDefs": [
       {
-        "targets": 4,
+        "targets": 3,
         "data": null,
         "defaultContent": "<button class='btn btn-success update' data-toggle='modal' data-target='#updateModal'><span class='fa fa-edit'></span></button>"
       },
       {
-        "targets": 5,
+        "targets": 4,
         "data": null,
         "defaultContent": "<button class='btn btn-danger delete'><span class='fa fa-trash'></span></button>"
       }
