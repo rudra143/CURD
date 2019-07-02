@@ -55,7 +55,7 @@
               </div>
               <div class="form-group">
                 <label for="">Contact</label>
-                <input class="form-control" type="text" name="" value="">
+                <input class="form-control" type="text" name="contact" value="">
               </div>
               <button type="submit" class="btn btn-success save" name="insert">Save</button>
             </form>

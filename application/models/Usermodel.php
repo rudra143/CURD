@@ -2,8 +2,8 @@
 
 class Usermodel extends CI_Model{
 
-    public function saveUser($data)
-    {
+    public function saveUser($data) {
+
         $this->db->trans_start();
   
         $this->db->insert('info',$data);
@@ -11,9 +11,11 @@ class Usermodel extends CI_Model{
         $this->db->trans_complete();
   
         return $this->db->trans_status();
+    
     }
 
-    public function fetchUsers(){
+    public function fetchUsers() {
+    
         $query = $this->db->get('info');
         $results = $query->result_array();
         $records = [];
@@ -21,16 +23,11 @@ class Usermodel extends CI_Model{
             $records[] = $result;
         }
         return $records;
+
     }
 
-    // public function updateUser($id){
-    //   $query = $this->db->where('id',$id)->get('info');
-    //   if ($query->num_rows()) {
-    //     return $query->result();
-    //   }
-    // }
+    public function update($id, $data) {
 
-    public function update($id, $data){
         $this->db->trans_start();
   
         $query = $this->db->where('id',$id)->update('info', $data);
@@ -38,6 +35,7 @@ class Usermodel extends CI_Model{
         $this->db->trans_complete();
   
         return $this->db->trans_status();
+        
     }
 
     public function deleteUser($id){
